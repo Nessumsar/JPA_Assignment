@@ -7,41 +7,56 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.TestPropertySource;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 
 
 @DataJpaTest
+@TestPropertySource(locations="classpath:resources.properties")
 public class IngredientRepoTest {
-    @Autowired
-    private IngredientRepository testObject;
+    //work in progress
 
-    Ingredient testBanana = new Ingredient("Banana");
-    Ingredient testApple1 = new Ingredient("Red apple");
-    Ingredient testApple2 = new Ingredient("Green apple");
+    @Autowired private IngredientRepository testObject;
+    @Autowired private TestEntityManager em;
+
+    private List<Ingredient> data ()  {
+        return Arrays.asList(new Ingredient ("Paprika"),
+                new Ingredient("Tomat")
+        );
+    }
+
+    private Ingredient testIngredient;
 
     @BeforeEach
     void setUp(){
-        testObject.save(testBanana);
-        testObject.save(testApple1);
-        testObject.save(testApple2);
+        data().forEach(testObject::save);
+        testIngredient = testObject.save(new Ingredient("Gurka"));
+        em.flush();
     }
 
     @Test
-    public void given_name_find_banana(){
-        String name = "banana";
+    void injectionsNotNull(){
+        assertNotNull(testObject);
+        assertNotNull(em);
+    }
+
+    @Test
+    void testFindByIngredientName(){
+        String name = "Gurka";
         Optional<Ingredient> result = testObject.findByIngredientName(name);
 
         assertTrue(result.isPresent());
-        assertEquals(testBanana,result.get());
+        assertEquals(testIngredient, result.get());
     }
 
     @Test
-    public void given_name_contains_returns_2(){
-        String name = "appl";
-        List<Ingredient> result = testObject.findByIngredientNameContainsIgnoreCase(name);
+    void testFindByIngredientNameContains(){
+        String searchQuery = "r";
+        List<Ingredient> result = testObject.findByIngredientNameContainsIgnoreCase(searchQuery);
 
-        assertEquals(2,result.size());
+        assertEquals(2, result.size());
+        assertTrue(result.contains(testIngredient));
     }
-
 }

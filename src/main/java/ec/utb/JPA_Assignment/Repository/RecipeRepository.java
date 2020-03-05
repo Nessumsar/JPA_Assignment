@@ -19,10 +19,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     List<Recipe> findRecipeByRecipeCategories(String categoryName);
 
-    //Hitta alla recept som har en eller fleraträffar från en samling kategorier.  Ex: {”spicy”,”mexican”,”weekend”
-    //kvar att göra
-
-   // List<Recipe> findRecipeFromRecipeCategories(List<String> recipeCategories);
-
+    // work in progress
+    // List<Recipe> findRecipeFromRecipeCategories(List<String> recipeCategoryName);
 
 }
