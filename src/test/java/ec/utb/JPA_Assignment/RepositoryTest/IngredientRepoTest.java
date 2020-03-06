@@ -2,12 +2,11 @@ package ec.utb.JPA_Assignment.RepositoryTest;
 
 import ec.utb.JPA_Assignment.Entity.Ingredient;
 import ec.utb.JPA_Assignment.Repository.IngredientRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.autoconfigure.orm.jpa.*;
 import org.springframework.test.context.TestPropertySource;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
