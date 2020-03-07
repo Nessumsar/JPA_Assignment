@@ -6,8 +6,6 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.*;
 import org.springframework.test.context.TestPropertySource;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 
@@ -15,7 +13,6 @@ import java.util.*;
 @DataJpaTest
 @TestPropertySource(locations="classpath:resources.properties")
 public class IngredientRepoTest {
-    //work in progress
 
     @Autowired private IngredientRepository testObject;
     @Autowired private TestEntityManager em;

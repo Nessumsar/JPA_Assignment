@@ -18,7 +18,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
 
     List<Recipe> findRecipeByRecipeCategories(String categoryName);
-    
+
     @Query("SELECT recipe FROM Recipe recipe JOIN FETCH recipe.recipeCategories recipeCategory WHERE" +
             " recipeCategory.recipeCategoryName IN :categories")
     List<Recipe> findRecipesByCategoriesWithQuery(@Param("categories")List<String> categories);

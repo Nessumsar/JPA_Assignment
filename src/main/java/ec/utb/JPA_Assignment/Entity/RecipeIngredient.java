@@ -56,6 +56,10 @@ public class RecipeIngredient {
         this(null , null,  amount, measurement, null);
     }
 
+    public RecipeIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+
     RecipeIngredient(){}
 
     public String getRecipeIngredientId() {

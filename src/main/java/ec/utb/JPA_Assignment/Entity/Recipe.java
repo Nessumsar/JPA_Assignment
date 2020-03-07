@@ -52,6 +52,10 @@ public class Recipe {
         this.recipeCategories = recipeCategories;
     }
 
+    public Recipe(String recipeName) {
+        this.recipeName = recipeName;
+    }
+
     public Recipe(){}
 
     public RecipeInstruction getRecipeInstruction() {
